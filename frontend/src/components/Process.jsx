@@ -68,6 +68,9 @@ function Process() {
                                     <img
                                         src={step.image}
                                         alt={step.title}
+                                        loading="lazy"
+                                        width="600"
+                                        height="400"
                                         className="img-fluid w-100 h-100 object-fit-cover"
                                     />
                                 </div>

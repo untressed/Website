@@ -79,7 +79,16 @@ const Testimonials = () => {
 
                         <div className="author-container">
                             <div className="author-avatar" style={{ border: `2px solid ${item.color}` }}>
-                                {item.image && <img src={item.image} alt={item.author} className="author-image" />}
+                                {item.image && (
+                                    <img
+                                        src={item.image}
+                                        alt={item.author}
+                                        loading="lazy"
+                                        width="60"
+                                        height="60"
+                                        className="author-image"
+                                    />
+                                )}
                             </div>
                             <div className="author-info">
                                 <span className="author-name">{item.author}</span>

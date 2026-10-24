@@ -99,8 +99,8 @@ function Navbar({ isServicesModalOpen, setIsServicesModalOpen }) {
                         <div className="container-fluid px-0">
                             {/* Logo Section */}
                             <NavLink className="navbar-brand d-flex align-items-center gap-2 tube-brand" to="/" onClick={() => { setIsServicesModalOpen(false); setIsLoginOpen(false); setIsMobileMenuOpen(false); }}>
-                                <img src={logo} alt="UNTRESSED Logo" style={{ height: '42px', width: 'auto' }} />
-                                <img src={wordmark} alt="UNTRESSED" style={{ height: '24px', width: 'auto' }} />
+                                <img src={logo} alt="UNTRESSED Logo" width="42" height="42" style={{ height: '42px', width: 'auto' }} />
+                                <img src={wordmark} alt="UNTRESSED" width="135" height="24" style={{ height: '24px', width: 'auto' }} />
                             </NavLink>
 
                         <button
@@ -108,6 +108,7 @@ function Navbar({ isServicesModalOpen, setIsServicesModalOpen }) {
                             type="button"
                             onClick={toggleMobileMenu}
                             aria-expanded={isMobileMenuOpen}
+                            aria-label="Toggle navigation menu"
                         >
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -205,6 +206,9 @@ function Navbar({ isServicesModalOpen, setIsServicesModalOpen }) {
                                         }}
                                         style={{ cursor: 'pointer' }}
                                         title="Account / Login"
+                                        role="button"
+                                        tabIndex={0}
+                                        aria-label="Account Login"
                                     >
                                         <BsPersonFill size={24} />
                                     </div>
@@ -216,6 +220,7 @@ function Navbar({ isServicesModalOpen, setIsServicesModalOpen }) {
                                     className="d-flex align-items-center justify-content-center text-decoration-none nav-icon-tube"
                                     onClick={() => { setIsServicesModalOpen(false); setIsLoginOpen(false); setIsMobileMenuOpen(false); }}
                                     title="View Cart"
+                                    aria-label="View Shopping Cart"
                                 >
                                     <BsCart4 size={22} />
                                 </NavLink>

@@ -21,8 +21,8 @@ function Footer() {
                     {/* Col 1: Brand & Office Location Cards */}
                     <div className="col-lg-3 col-md-6">
                         <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-3">
-                            <img src={logo} alt="UNTRESSED Logo" style={{ height: '36px', width: 'auto' }} />
-                            <img src={wordmark} alt="UNTRESSED" style={{ height: '20px', width: 'auto' }} />
+                            <img src={logo} alt="UNTRESSED Logo" width="36" height="36" style={{ height: '36px', width: 'auto' }} />
+                            <img src={wordmark} alt="UNTRESSED" width="112" height="20" style={{ height: '20px', width: 'auto' }} />
                         </div>
 
                         <div className="d-flex flex-column gap-2">
@@ -117,9 +117,9 @@ function Footer() {
 
                             <div className="mb-3">
                                 <div className="d-flex gap-2 justify-content-center justify-content-md-start">
-                                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon facebook" title="Facebook"><FaFacebookF /></a>
-                                    <a href="https://www.instagram.com/untressed" target="_blank" rel="noopener noreferrer" className="social-icon instagram" title="Instagram"><FaInstagram /></a>
-                                    <a href="https://www.linkedin.com/company/untressed" target="_blank" rel="noopener noreferrer" className="social-icon linkedin" title="LinkedIn"><FaLinkedinIn /></a>
+                                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon facebook" title="Facebook" aria-label="UNTRESSED on Facebook"><FaFacebookF /></a>
+                                    <a href="https://www.instagram.com/untressed" target="_blank" rel="noopener noreferrer" className="social-icon instagram" title="Instagram" aria-label="UNTRESSED on Instagram"><FaInstagram /></a>
+                                    <a href="https://www.linkedin.com/company/untressed" target="_blank" rel="noopener noreferrer" className="social-icon linkedin" title="LinkedIn" aria-label="UNTRESSED on LinkedIn"><FaLinkedinIn /></a>
                                 </div>
                             </div>
 

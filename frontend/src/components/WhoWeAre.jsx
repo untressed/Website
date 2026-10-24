@@ -27,6 +27,9 @@ function WhoWeAre() {
                                 src={teamOffice}
                                 alt="Office Team"
                                 className="img-fluid w-100 object-fit-cover"
+                                loading="lazy"
+                                width="650"
+                                height="400"
                                 style={{ height: '400px' }}
                             />
                         </div>
@@ -54,6 +57,9 @@ function WhoWeAre() {
                                 src={codeSetup}
                                 alt="Code Setup"
                                 className="img-fluid w-100 object-fit-cover"
+                                loading="lazy"
+                                width="450"
+                                height="300"
                                 style={{ height: '300px' }}
                             />
                         </div>

@@ -16,6 +16,9 @@ const Clients = () => {
                 <img
                     src={clientClover}
                     alt="Clover Lifestyle Ltd"
+                    loading="lazy"
+                    width="120"
+                    height="40"
                     className="client-logo-img clover-logo-img"
                 />
             )
@@ -29,6 +32,9 @@ const Clients = () => {
                     <img
                         src={clientVed}
                         alt="Ved Enterprises Logo"
+                        loading="lazy"
+                        width="40"
+                        height="40"
                         className="ved-logo-icon"
                     />
                     <div className="ved-wordmark">
@@ -47,11 +53,17 @@ const Clients = () => {
                     <img
                         src={clientPequireLogo}
                         alt="Pequire Logo"
+                        loading="lazy"
+                        width="36"
+                        height="36"
                         className="pequire-logo-icon"
                     />
                     <img
                         src={clientPequireWordmark}
                         alt="Pequire Wordmark"
+                        loading="lazy"
+                        width="100"
+                        height="28"
                         className="pequire-wordmark-img"
                     />
                 </div>
@@ -66,6 +78,9 @@ const Clients = () => {
                     <img
                         src={clientMykamato}
                         alt="MyKamato Logo"
+                        loading="lazy"
+                        width="40"
+                        height="40"
                         className="mykamato-logo-icon"
                     />
                     <div className="mykamato-wordmark">
