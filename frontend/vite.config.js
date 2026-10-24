@@ -36,19 +36,6 @@ export default defineConfig({
   },
   build: {
     sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('rsuite')) return 'vendor-rsuite';
-            if (id.includes('react-icons')) return 'vendor-icons';
-            if (id.includes('bootstrap')) return 'vendor-bootstrap';
-            if (id.includes('swiper')) return 'vendor-swiper';
-            return 'vendor';
-          }
-        },
-      },
-    },
   },
   server: {
     host: true, // This exposes the app to the network (0.0.0.0)
