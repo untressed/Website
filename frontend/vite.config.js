@@ -36,6 +36,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: false,
+    cssCodeSplit: true,
   },
   server: {
     host: true, // This exposes the app to the network (0.0.0.0)
