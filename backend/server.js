@@ -131,8 +131,16 @@ const validStaticPaths = [];
 for (const candidate of staticCandidates) {
     if (fs.existsSync(candidate) && !validStaticPaths.includes(candidate)) {
         validStaticPaths.push(candidate);
-        console.log('📁 Registering static asset directory:', candidate);
-        app.use(express.static(candidate, { maxAge: '1d' }));
+        app.use(express.static(candidate, {
+            maxAge: '30d',
+            setHeaders: (res, filePath) => {
+                if (filePath.endsWith('.html')) {
+                    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+                } else if (/\.(js|css|webp|png|jpg|jpeg|svg|ico|woff2?)$/i.test(filePath)) {
+                    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+                }
+            }
+        }));
         app.use('/assets', express.static(path.join(candidate, 'assets'), {
             maxAge: '1y',
             immutable: true

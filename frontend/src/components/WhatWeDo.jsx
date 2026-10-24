@@ -71,6 +71,9 @@ function WhatWeDo() {
                                         <img
                                             src={service.image}
                                             alt={service.title}
+                                            loading="lazy"
+                                            width="320"
+                                            height="420"
                                             className="w-100 h-100 object-fit-cover position-absolute top-0 start-0"
                                         />
                                         <div className="service-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end align-items-center">
