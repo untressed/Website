@@ -1,5 +1,5 @@
 import React from 'react'
-import teamHero from '../assets/about-team-hero.jpg'
+import teamCheering from '../assets/about-team-cheering.jpg'
 
 function AboutIntro() {
     return (
@@ -47,17 +47,38 @@ function AboutIntro() {
                         </div>
                     </div>
 
-                    {/* Right Column - Framed Hero Image with Floating Badges */}
+                    {/* Right Column - Vertical Pill Slat Image Structure */}
                     <div className="col-lg-6">
-                        <div className="about-hero-image-wrapper">
-                            <div className="about-hero-card">
-                                <img
-                                    src={teamHero}
-                                    alt="UNTRESSED Team Collaboration"
-                                    className="about-hero-img"
-                                    loading="eager"
+                        <div className="about-slats-wrapper">
+                            <svg
+                                viewBox="0 0 600 520"
+                                className="about-slats-svg"
+                                preserveAspectRatio="xMidYMid meet"
+                            >
+                                <defs>
+                                    <mask id="team-slat-mask" maskUnits="userSpaceOnUse">
+                                        {/* 7 Vertical Pill-shaped Slats matching cascading reference */}
+                                        <rect x="24" y="40" width="70" height="260" rx="35" ry="35" fill="white" />
+                                        <rect x="106" y="40" width="70" height="315" rx="35" ry="35" fill="white" />
+                                        <rect x="188" y="40" width="70" height="365" rx="35" ry="35" fill="white" />
+                                        <rect x="270" y="40" width="70" height="420" rx="35" ry="35" fill="white" />
+                                        <rect x="352" y="40" width="70" height="470" rx="35" ry="35" fill="white" />
+                                        <rect x="434" y="40" width="70" height="435" rx="35" ry="35" fill="white" />
+                                        <rect x="516" y="40" width="70" height="375" rx="35" ry="35" fill="white" />
+                                    </mask>
+                                </defs>
+
+                                <image
+                                    href={teamCheering}
+                                    x="10"
+                                    y="0"
+                                    width="580"
+                                    height="520"
+                                    preserveAspectRatio="xMidYMid slice"
+                                    mask="url(#team-slat-mask)"
+                                    className="about-slats-image"
                                 />
-                            </div>
+                            </svg>
 
                             {/* Floating Stat Card 1 - Top Left */}
                             <div className="about-floating-card floating-card-top">
