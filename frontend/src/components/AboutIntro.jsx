@@ -1,5 +1,5 @@
 import React from 'react'
-import teamCollage from '../assets/about-team-collage.webp'
+import teamHero from '../assets/about-team-hero.jpg'
 
 function AboutIntro() {
     return (
@@ -8,8 +8,11 @@ function AboutIntro() {
                 <div className="row align-items-center g-5">
                     {/* Left Column - Text Content */}
                     <div className="col-lg-6">
-                        <div className="about-content">
-                            <h6 className="about-label text-uppercase mb-3">WHO WE ARE</h6>
+                        <div className="about-content pe-lg-4">
+                            <div className="about-pill-tag mb-3">
+                                <span className="pulse-dot"></span>
+                                WHO WE ARE
+                            </div>
                             <h1 className="about-title mb-4">
                                 UNTRESSED
                             </h1>
@@ -19,6 +22,20 @@ function AboutIntro() {
                                 your workflow, elevate your brand, and accelerate
                                 growth.
                             </p>
+
+                            {/* Core Pillars */}
+                            <div className="about-pillars mb-4">
+                                <div className="pillar-item">
+                                    <span className="pillar-check">✓</span> Tech Innovation
+                                </div>
+                                <div className="pillar-item">
+                                    <span className="pillar-check">✓</span> Scalable Architecture
+                                </div>
+                                <div className="pillar-item">
+                                    <span className="pillar-check">✓</span> Client-Centric
+                                </div>
+                            </div>
+
                             <div className="trust-badge">
                                 <div className="trust-avatars">
                                     <div className="avatar-circle"></div>
@@ -30,14 +47,35 @@ function AboutIntro() {
                         </div>
                     </div>
 
-                    {/* Right Column - Team Image Collage */}
+                    {/* Right Column - Framed Hero Image with Floating Badges */}
                     <div className="col-lg-6">
-                        <div className="team-collage">
-                            <img
-                                src={teamCollage}
-                                alt="UNTRESSED Team"
-                                className="team-collage-image"
-                            />
+                        <div className="about-hero-image-wrapper">
+                            <div className="about-hero-card">
+                                <img
+                                    src={teamHero}
+                                    alt="UNTRESSED Team Collaboration"
+                                    className="about-hero-img"
+                                    loading="eager"
+                                />
+                            </div>
+
+                            {/* Floating Stat Card 1 - Top Left */}
+                            <div className="about-floating-card floating-card-top">
+                                <div className="floating-card-icon">🚀</div>
+                                <div>
+                                    <div className="floating-card-number">150+</div>
+                                    <div className="floating-card-label">Projects Delivered</div>
+                                </div>
+                            </div>
+
+                            {/* Floating Stat Card 2 - Bottom Right */}
+                            <div className="about-floating-card floating-card-bottom">
+                                <div className="floating-card-icon">✨</div>
+                                <div>
+                                    <div className="floating-card-number">99.8%</div>
+                                    <div className="floating-card-label">Client Satisfaction</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -47,3 +85,4 @@ function AboutIntro() {
 }
 
 export default AboutIntro
+
