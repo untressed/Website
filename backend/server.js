@@ -10,10 +10,19 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5500;
 
-// Environment validation (Simplified)
-if (!process.env.MONGO_URI || !process.env.JWT_SECRET) {
-    console.error("❌ Missing required environment variables");
-    process.exit(1);
+// Environment validation
+const missingVars = [];
+if (!process.env.MONGO_URI) missingVars.push('MONGO_URI');
+if (!process.env.JWT_SECRET) missingVars.push('JWT_SECRET');
+
+if (missingVars.length > 0) {
+    console.warn(`⚠️ Warning: Missing environment variables: ${missingVars.join(', ')}`);
+    console.warn("⚠️ Server will continue to start and serve static pages, but database operations require MONGO_URI in Render settings.");
+}
+
+// Fallback JWT_SECRET if not provided in environment
+if (!process.env.JWT_SECRET) {
+    process.env.JWT_SECRET = 'untressed_jwt_fallback_secret_key_2026';
 }
 
 // ============================================
@@ -83,9 +92,13 @@ app.use((req, res, next) => {
 });
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('✅ MongoDB Connected'))
-    .catch(err => console.error('❌ MongoDB Connection Error:', err));
+if (process.env.MONGO_URI) {
+    mongoose.connect(process.env.MONGO_URI)
+        .then(() => console.log('✅ MongoDB Connected'))
+        .catch(err => console.error('❌ MongoDB Connection Error:', err));
+} else {
+    console.warn('⚠️ MongoDB connection skipped: MONGO_URI is not set in Environment Variables.');
+}
 
 // Routes
 // (Root route handled by static files in production)
