@@ -57,6 +57,7 @@ const defaultOrigins = [
     'https://untressed.com',
     'https://www.untressed.com',
     'https://untressed.onrender.com',
+    'https://website-kg8d.onrender.com',
     'https://prits-it-solutions.onrender.com',
     'https://pritsitsolutions.com',
     'https://www.pritsitsolutions.com'
@@ -131,8 +132,11 @@ for (const candidate of staticCandidates) {
     if (fs.existsSync(candidate) && !validStaticPaths.includes(candidate)) {
         validStaticPaths.push(candidate);
         console.log('📁 Registering static asset directory:', candidate);
-        app.use(express.static(candidate));
-        app.use('/assets', express.static(path.join(candidate, 'assets')));
+        app.use(express.static(candidate, { maxAge: '1d' }));
+        app.use('/assets', express.static(path.join(candidate, 'assets'), {
+            maxAge: '1y',
+            immutable: true
+        }));
     }
 }
 
