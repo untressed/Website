@@ -2,9 +2,30 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/webp" href="/favicon.webp" />
+  <!-- Theme-adaptive favicon: Crisp white on dark browser tabs, dark on light tabs -->
+  <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="/UNTRESSED-logo-auto.svg" />
+  <link rel="icon" type="image/svg+xml" href="/UNTRESSED-logo-white.svg" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" type="image/webp" href="/favicon.webp" media="(prefers-color-scheme: light)" />
   <link rel="apple-touch-icon" href="/favicon.webp" />
+  <script>
+    (function () {
+      function applyThemeFavicon() {
+        var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var icon = document.getElementById('dynamic-favicon');
+        if (icon) {
+          icon.href = isDark ? '/UNTRESSED-logo-white.svg' : '/favicon.webp';
+        }
+      }
+      applyThemeFavicon();
+      if (window.matchMedia) {
+        try {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyThemeFavicon);
+        } catch (e) {
+          try { window.matchMedia('(prefers-color-scheme: dark)').addListener(applyThemeFavicon); } catch (_) {}
+        }
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UNTRESSED | Digital Solutions & Technology</title>
   
