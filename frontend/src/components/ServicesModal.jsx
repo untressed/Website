@@ -15,6 +15,10 @@ import BrandingServices from '../service_description/BrandingServices';
 import WhatsappAutomation from '../service_description/WhatsappAutomation';
 import Crm from '../service_description/Crm';
 import ChatbotSetup from '../service_description/ChatbotSetup';
+import SaasProduct from '../service_description/SaasProduct';
+import MvpDevelopment from '../service_description/MvpDevelopment';
+import CustomSoftware from '../service_description/CustomSoftware';
+import InventoryBillingSystem from '../service_description/InventoryBillingSystem';
 
 const ServicesModal = ({ isOpen, onClose }) => {
     const [selectedService, setSelectedService] = useState(null);
@@ -43,6 +47,10 @@ const ServicesModal = ({ isOpen, onClose }) => {
     if (!isOpen && !isPricingModalOpen) return null;
 
     const servicesMap = {
+        'SaaS Product': SaasProduct,
+        'MVP Development': MvpDevelopment,
+        'Custom Software': CustomSoftware,
+        'Inventory & Billing Management System': InventoryBillingSystem,
         'Web Development': WebDevelopment,
         'UI/UX Development': UiUxDevelopment,
         'App Development': AppDevelopment,
@@ -61,15 +69,19 @@ const ServicesModal = ({ isOpen, onClose }) => {
 
     const services = {
         left: [
+            'SaaS Product',
+            'MVP Development',
+            'Custom Software',
+            'Inventory & Billing Management System',
             'Web Development',
             'UI/UX Development',
             'App Development',
             'Search Engine Optimization(SEO)',
-            'Social Media Optimization(SMO)',
-            'Pay-Per-Click(PPC)',
-            'LinkedIn Marketing'
+            'Social Media Optimization(SMO)'
         ],
         right: [
+            'Pay-Per-Click(PPC)',
+            'LinkedIn Marketing',
             'Google My Business',
             'Performance Marketing Services',
             'Funnel Building',

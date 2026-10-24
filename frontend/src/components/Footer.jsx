@@ -58,24 +58,26 @@ function Footer() {
                         <div className="row g-2">
                             <div className="col-6">
                                 <ul className="list-unstyled d-flex flex-column gap-1 mb-0">
+                                    <li><span className="footer-service-item">SaaS Products</span></li>
+                                    <li><span className="footer-service-item">MVP Development</span></li>
+                                    <li><span className="footer-service-item">Custom Software</span></li>
+                                    <li><span className="footer-service-item">Inventory & Billing</span></li>
                                     <li><span className="footer-service-item">Web Development</span></li>
                                     <li><span className="footer-service-item">UI/UX Development</span></li>
                                     <li><span className="footer-service-item">App Development</span></li>
                                     <li><span className="footer-service-item">SEO</span></li>
-                                    <li><span className="footer-service-item">SMO</span></li>
-                                    <li><span className="footer-service-item">PPC</span></li>
-                                    <li><span className="footer-service-item">LinkedIn Marketing</span></li>
                                 </ul>
                             </div>
                             <div className="col-6">
                                 <ul className="list-unstyled d-flex flex-column gap-1 mb-0">
-                                    <li><span className="footer-service-item">Google My Business</span></li>
-                                    <li><span className="footer-service-item">Performance Marketing</span></li>
-                                    <li><span className="footer-service-item">Funnel Building</span></li>
-                                    <li><span className="footer-service-item">Branding Services</span></li>
-                                    <li><span className="footer-service-item">Whatsapp Automation</span></li>
-                                    <li><span className="footer-service-item">CRM</span></li>
+                                    <li><span className="footer-service-item">CRM Systems</span></li>
                                     <li><span className="footer-service-item">Chatbot Setup</span></li>
+                                    <li><span className="footer-service-item">WhatsApp Automation</span></li>
+                                    <li><span className="footer-service-item">Funnel Building</span></li>
+                                    <li><span className="footer-service-item">Performance Marketing</span></li>
+                                    <li><span className="footer-service-item">PPC & Google Ads</span></li>
+                                    <li><span className="footer-service-item">LinkedIn Marketing</span></li>
+                                    <li><span className="footer-service-item">Branding Services</span></li>
                                 </ul>
                             </div>
                         </div>

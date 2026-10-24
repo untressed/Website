@@ -21,6 +21,10 @@ import ppcBg from '../assets/pay-per-click.webp' // New PPC
 
 function WhatWeDo() {
     const services = [
+        { title: "SAAS PRODUCT DEVELOPMENT", image: crmBg, desc: "Architecting high-availability, multi-tenant cloud SaaS products engineered for rapid ARR and global scale." },
+        { title: "MVP DEVELOPMENT", image: appDevBg, desc: "Turn your startup vision into a market-ready, investor-grade prototype and functional product in weeks." },
+        { title: "CUSTOM SOFTWARE", image: serviceCardBg, desc: "Bespoke internal systems, automated workflows, and enterprise software tailored to your specific business operations." },
+        { title: "INVENTORY & BILLING SYSTEM", image: seoDiagramBg, desc: "Comprehensive point-of-sale, multi-warehouse inventory tracking, and GST/VAT automated billing suites." },
         { title: "WEB DEVELOPMENT", image: serviceCardBg, desc: "We build fast, scalable, custom websites tailored to your goals, designed for performance, usability, and long-term growth." },
         { title: "UI/UX DEVELOPMENT", image: uiUxBg, desc: "User-centric design solutions that enhance engagement, improve accessibility, and create memorable digital journeys." },
         { title: "APP DEVELOPMENT", image: appDevBg, desc: "Native and cross-platform mobile apps that provide seamless user experiences and powerful functionality for your business." },
