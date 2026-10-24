@@ -116,25 +116,42 @@ app.use('/api/promo', promoCodeRoutes);
 
 // Static files for Production / SPA
 const fs = require('fs');
-const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
-const backendFrontendDistPath = path.join(__dirname, 'frontend');
 
-let staticPath = null;
-if (fs.existsSync(frontendDistPath)) {
-    staticPath = frontendDistPath;
-} else if (fs.existsSync(backendFrontendDistPath)) {
-    staticPath = backendFrontendDistPath;
+const staticCandidates = [
+    path.resolve(__dirname, '..', 'frontend', 'dist'),
+    path.resolve(__dirname, 'frontend'),
+    path.resolve(process.cwd(), '..', 'frontend', 'dist'),
+    path.resolve(process.cwd(), 'frontend', 'dist'),
+    path.resolve(process.cwd(), 'backend', 'frontend'),
+    path.resolve(process.cwd(), 'frontend'),
+];
+
+const validStaticPaths = [];
+for (const candidate of staticCandidates) {
+    if (fs.existsSync(candidate) && !validStaticPaths.includes(candidate)) {
+        validStaticPaths.push(candidate);
+        console.log('📁 Registering static asset directory:', candidate);
+        app.use(express.static(candidate));
+        app.use('/assets', express.static(path.join(candidate, 'assets')));
+    }
 }
 
-if (staticPath) {
-    console.log('📁 Serving static files from:', staticPath);
-    app.use(express.static(staticPath));
+// Catch-all route for SPA - must be AFTER API routes and static handlers
+app.get('*', (req, res) => {
+    // If request looks like a static asset file (ends with an extension), do NOT return HTML
+    if (/\.(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|eot|map|json)$/i.test(req.path)) {
+        return res.status(404).send('Asset not found');
+    }
 
-    // Catch-all route for SPA - must be AFTER API routes
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(staticPath, 'index.html'));
-    });
-}
+    // Serve index.html from first valid directory
+    for (const validPath of validStaticPaths) {
+        const indexPath = path.join(validPath, 'index.html');
+        if (fs.existsSync(indexPath)) {
+            return res.sendFile(indexPath);
+        }
+    }
+    res.status(404).send('Application bundle index.html not found. Please build the frontend.');
+});
 
 const server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
