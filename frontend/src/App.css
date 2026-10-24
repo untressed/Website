@@ -1721,19 +1721,19 @@ body {
 
 .services-modal-content {
   position: absolute;
-  top: 88px; /* Positioned cleanly below the floating navbar with zero overlap */
+  top: 86px; /* Positioned cleanly below the floating navbar with zero overlap */
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.9); /* Original glassmorphic card with crisp visibility */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 30px 40px; /* Original size and padding preserved */
-  border-radius: 20px; /* Original card border radius */
-  max-width: 650px; /* Original card max-width preserved */
-  width: 80%; /* Original width */
-  animation: dropDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  padding: 24px 36px;
+  border-radius: 24px;
+  max-width: 780px; /* Spacious width to prevent awkward text wrapping */
+  width: 92%;
+  animation: dropDown 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  border: 1px solid rgba(192, 169, 143, 0.35);
 }
 
 @keyframes dropDown {
@@ -1752,53 +1752,96 @@ body {
   display: none;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px; /* Original grid gap preserved */
-}
-
-.services-column {
+/* Synchronized 2-column table layout with perfect horizontal line consistency */
+.services-table {
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Original column gap preserved */
+  width: 100%;
 }
 
-.service-item {
-  background: transparent;
-  padding: 12px 0; /* Original padding preserved */
+.service-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+  border-bottom: 1px solid rgba(192, 169, 143, 0.22);
+  align-items: stretch;
+}
+
+.service-row:last-child {
+  border-bottom: none;
+}
+
+.service-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px;
   color: #20382C;
-  font-size: 1.05rem; /* Original font size preserved */
+  font-size: 0.98rem;
   font-weight: 500;
-  transition: all 0.2s ease;
   cursor: pointer;
-  border-bottom: 1px solid rgba(192, 169, 143, 0.2); /* Original underline separator preserved */
+  border-radius: 8px;
+  transition: all 0.18s ease;
+  user-select: none;
 }
 
-.service-item:hover {
+.service-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-cell:hover {
   color: #315C46;
-  padding-left: 8px;
+  background-color: rgba(49, 92, 70, 0.05);
+  padding-left: 14px;
+  padding-right: 12px;
+}
+
+.service-arrow {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.18s ease;
+  color: #315C46;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-left: 8px;
+}
+
+.service-cell:hover .service-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 @media (max-width: 768px) {
   .services-modal-content {
-    padding: 24px 20px;
-    width: 90%;
-    top: 76px;
-    max-height: none;
-    overflow-y: visible;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 18px 14px;
+    width: 95%;
+    top: 74px;
+    border-radius: 18px;
+    max-height: 85vh;
+    overflow-y: auto;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+  .service-row {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    border-bottom: none;
   }
 
-  .service-item {
-    font-size: 0.85rem;
-    padding: 8px 0;
+  .service-cell {
+    font-size: 0.88rem;
+    padding: 9px 8px;
+    border-bottom: 1px solid rgba(192, 169, 143, 0.2);
+  }
+
+  .service-name {
+    white-space: normal;
+  }
+
+  .service-arrow {
+    opacity: 0.6;
+    transform: none;
   }
 }
 

@@ -50,47 +50,40 @@ const ServicesModal = ({ isOpen, onClose }) => {
         'SaaS Product': SaasProduct,
         'MVP Development': MvpDevelopment,
         'Custom Software': CustomSoftware,
+        'Inventory & Billing Systems': InventoryBillingSystem,
         'Inventory & Billing Management System': InventoryBillingSystem,
         'Web Development': WebDevelopment,
         'UI/UX Development': UiUxDevelopment,
         'App Development': AppDevelopment,
+        'Search Engine Optimization (SEO)': SearchEngineOptimization,
         'Search Engine Optimization(SEO)': SearchEngineOptimization,
+        'Social Media Optimization (SMO)': SocialMediaOptimization,
         'Social Media Optimization(SMO)': SocialMediaOptimization,
+        'Pay-Per-Click (PPC)': PayPerClick,
         'Pay-Per-Click(PPC)': PayPerClick,
         'LinkedIn Marketing': LinkedinMarketing,
         'Google My Business': GoogleMyBusiness,
         'Performance Marketing Services': PerformanceMarketing,
         'Funnel Building': FunnelBuilding,
         'Branding Services': BrandingServices,
+        'WhatsApp Automation': WhatsappAutomation,
         'Whatsapp Automation': WhatsappAutomation,
+        'CRM Solutions': Crm,
         'CRM': Crm,
         'Chatbot Setup': ChatbotSetup
     };
 
-    const services = {
-        left: [
-            'SaaS Product',
-            'MVP Development',
-            'Custom Software',
-            'Inventory & Billing Management System',
-            'Web Development',
-            'UI/UX Development',
-            'App Development',
-            'Search Engine Optimization(SEO)',
-            'Social Media Optimization(SMO)'
-        ],
-        right: [
-            'Pay-Per-Click(PPC)',
-            'LinkedIn Marketing',
-            'Google My Business',
-            'Performance Marketing Services',
-            'Funnel Building',
-            'Branding Services',
-            'Whatsapp Automation',
-            'CRM',
-            'Chatbot Setup'
-        ]
-    };
+    const serviceRows = [
+        { left: 'SaaS Product', right: 'Pay-Per-Click (PPC)' },
+        { left: 'MVP Development', right: 'LinkedIn Marketing' },
+        { left: 'Custom Software', right: 'Google My Business' },
+        { left: 'Inventory & Billing Systems', right: 'Performance Marketing Services' },
+        { left: 'Web Development', right: 'Funnel Building' },
+        { left: 'UI/UX Development', right: 'Branding Services' },
+        { left: 'App Development', right: 'WhatsApp Automation' },
+        { left: 'Search Engine Optimization (SEO)', right: 'CRM Solutions' },
+        { left: 'Social Media Optimization (SMO)', right: 'Chatbot Setup' }
+    ];
 
     const handleServiceClick = (serviceName) => {
         setSelectedService(serviceName);
@@ -128,32 +121,27 @@ const ServicesModal = ({ isOpen, onClose }) => {
                     className="services-modal-content"
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <button className="services-modal-close" onClick={onClose}>&times;</button>
+                    <button className="services-modal-close" onClick={onClose} aria-label="Close services modal">&times;</button>
 
-                    <div className="services-grid">
-                        <div className="services-column">
-                            {services.left.map((service, index) => (
+                    <div className="services-table">
+                        {serviceRows.map((row, index) => (
+                            <div key={index} className="service-row">
                                 <div
-                                    key={index}
-                                    className="service-item"
-                                    onClick={() => handleServiceClick(service)}
+                                    className="service-cell service-cell-left"
+                                    onClick={() => handleServiceClick(row.left)}
                                 >
-                                    {service}
+                                    <span className="service-name">{row.left}</span>
+                                    <span className="service-arrow">→</span>
                                 </div>
-                            ))}
-                        </div>
-
-                        <div className="services-column">
-                            {services.right.map((service, index) => (
                                 <div
-                                    key={index}
-                                    className="service-item"
-                                    onClick={() => handleServiceClick(service)}
+                                    className="service-cell service-cell-right"
+                                    onClick={() => handleServiceClick(row.right)}
                                 >
-                                    {service}
+                                    <span className="service-name">{row.right}</span>
+                                    <span className="service-arrow">→</span>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
