@@ -114,18 +114,25 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/promo', promoCodeRoutes);
 
-// Static files for Production
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-    const fs = require('fs');
-    const frontendDir = fs.existsSync(path.join(__dirname, '..', 'frontend', 'dist')) ? 'frontend' : 'pritsreact';
-    const frontendPath = path.join(__dirname, '..', frontendDir, 'dist');
-    console.log('📁 Serving static files from:', frontendPath);
-    app.use(express.static(frontendPath));
+// Static files for Production / SPA
+const fs = require('fs');
+const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
+const backendFrontendDistPath = path.join(__dirname, 'frontend');
+
+let staticPath = null;
+if (fs.existsSync(frontendDistPath)) {
+    staticPath = frontendDistPath;
+} else if (fs.existsSync(backendFrontendDistPath)) {
+    staticPath = backendFrontendDistPath;
+}
+
+if (staticPath) {
+    console.log('📁 Serving static files from:', staticPath);
+    app.use(express.static(staticPath));
 
     // Catch-all route for SPA - must be AFTER API routes
     app.get('*', (req, res) => {
-        console.log('🔄 SPA fallback for:', req.url);
-        res.sendFile(path.resolve(frontendPath, 'index.html'));
+        res.sendFile(path.resolve(staticPath, 'index.html'));
     });
 }
 

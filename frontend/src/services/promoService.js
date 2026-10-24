@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5500';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 // Validate promo code
 const validatePromoCode = async (code) => {
