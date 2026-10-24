@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Razorpay Integration</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1557b0;
+        }
+
+        #logs {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .log {
+            margin: 5px 0;
+            padding: 5px;
+            border-left: 3px solid #1a73e8;
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Razorpay Integration Test</h1>
+    <p>This page tests if Razorpay modal opens correctly.</p>
+
+    <button onclick="testRazorpay()">Test Razorpay Payment</button>
+
+    <div id="logs">
+        <div class="log">Logs will appear here...</div>
+    </div>
+
+    <script>
+        const RAZORPAY_KEY = 'rzp_test_S61cJhVEl5MDJF';
+        const API_URL = 'http://localhost:5500';
+
+        function addLog(message, type = 'info') {
+            const logsDiv = document.getElementById('logs');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log';
+            logEntry.style.borderLeftColor = type === 'error' ? 'red' : type === 'success' ? 'green' : '#1a73e8';
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logsDiv.appendChild(logEntry);
+            logsDiv.scrollTop = logsDiv.scrollHeight;
+        }
+
+        async function testRazorpay() {
+            addLog('🔄 Starting Razorpay test...');
+
+            // Check if Razorpay is loaded
+            if (!window.Razorpay) {
+                addLog('❌ Razorpay script not loaded!', 'error');
+                return;
+            }
+            addLog('✅ Razorpay script loaded successfully', 'success');
+
+            try {
+                // Create order
+                addLog('🔄 Creating Razorpay order...');
+                const response = await fetch(`${API_URL}/api/orders/razorpay`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ amount: 100 }) // 100 INR
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const order = await response.json();
+                addLog(`✅ Order created: ${order.id}`, 'success');
+                addLog(`💰 Amount: ${order.amount / 100} INR`);
+
+                // Configure Razorpay
+                const options = {
+                    key: RAZORPAY_KEY,
+                    amount: order.amount,
+                    currency: order.currency,
+                    name: "Test Payment",
+                    description: "Testing Razorpay Integration",
+                    order_id: order.id,
+                    handler: function (response) {
+                        addLog('✅ Payment successful!', 'success');
+                        addLog(`Payment ID: ${response.razorpay_payment_id}`);
+                        addLog(`Order ID: ${response.razorpay_order_id}`);
+                        addLog(`Signature: ${response.razorpay_signature}`);
+                    },
+                    prefill: {
+                        name: "Test User",
+                        email: "test@example.com",
+                        contact: "9999999999"
+                    },
+                    theme: {
+                        color: "#1a73e8"
+                    },
+                    modal: {
+                        ondismiss: function () {
+                            addLog('⚠️ Payment modal dismissed', 'error');
+                        }
+                    }
+                };
+
+                addLog('🔄 Opening Razorpay modal...');
+                const rzp = new Razorpay(options);
+
+                rzp.on('payment.failed', function (response) {
+                    addLog('❌ Payment failed!', 'error');
+                    addLog(`Error: ${response.error.description}`, 'error');
+                });
+
+                rzp.open();
+                addLog('✅ Razorpay modal opened - check if you can see it!', 'success');
+
+            } catch (error) {
+                addLog(`❌ Error: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+
+        // Log on page load
+        window.addEventListener('load', () => {
+            addLog('Page loaded');
+            addLog(`Razorpay available: ${!!window.Razorpay}`);
+            addLog(`API URL: ${API_URL}`);
+            addLog(`Razorpay Key: ${RAZORPAY_KEY}`);
+        });
+    </script>
+</body>
+
+</html>

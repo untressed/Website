@@ -1,0 +1,73 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install & Build Frontend
+        run: |
+          cd pritsreact
+          npm install
+          npm run build
+
+      - name: Prepare Deployment Package
+        run: |
+          # Ensure backend/pritsreact exists and is empty
+          rm -rf backend/pritsreact
+          mkdir -p backend/pritsreact
+          
+          # Move frontend build files INTO backend/pritsreact
+          # Use cp -a to preserve attributes and copy contents of dist
+          cp -a pritsreact/dist/. backend/pritsreact/
+          
+          echo "✅ Deployment package prepared"
+
+      - name: Deploy to Server (SCP/Rsync)
+        uses: easedeploy/ssh-deploy@v5
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "backend/"
+          REMOTE_HOST: ${{ secrets.HOSTINGER_HOST }}
+          REMOTE_USER: ${{ secrets.HOSTINGER_USER }}
+          TARGET: ${{ secrets.HOSTINGER_TARGET_PATH }}
+          # Exclude node_modules (will install on server) and .git
+          EXCLUDE: "/node_modules/, /.git/, /.env"
+
+      - name: Post-Deploy Scripts (Install & Restart)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ${{ secrets.HOSTINGER_TARGET_PATH }}
+            
+            echo "📦 Installing production dependencies..."
+            npm install --production
+            
+            echo "🔄 Restarting application..."
+            # Check if PM2 is installed, otherwise use node directly (PM2 is recommended)
+            if command -v pm2 &> /dev/null; then
+                pm2 restart prits-backend || pm2 start server.js --name "prits-backend"
+            else
+                echo "⚠️ PM2 not found. Please install PM2 on your server for better process management."
+                # Fallback or just warn
+                # nohup node server.js > app.log 2>&1 &
+            fi
+            
+            echo "✅ Deployment Complete!"

@@ -1,0 +1,52 @@
+﻿=== MongoDB Atlas Production Diagnostic ===
+Current Time: 2026-01-21T12:57:32.464Z
+
+-----------------------------------------
+Testing: Standard URI
+URI: mongodb+srv:****@cluster0.bbd5x.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0
+-----------------------------------------
+node : Γ¥î FAILED: 
+Standard URI
+At line:1 char:1
++ node 
+final_diagnostic.js 
+2>&1 | Out-File 
+-Encoding UTF8 
+diag_out_with ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Γ¥î FAI   
+ LED: Standard UR    
+I:String) [], Re    
+moteException
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+   Error Name: Error
+   Error Message: 
+querySrv ENOTFOUND _m
+ongodb._tcp.cluster0.
+bbd5x.mongodb.net
+
+-----------------------------------------
+Testing: AuthSource=Admin URI
+URI: mongodb+srv:****@cluster0.bbd5x.mongodb.net/test?authSource=admin&retryWrites=true&w=majority&appName=Cluster0
+-----------------------------------------
+Γ¥î FAILED: 
+AuthSource=Admin URI
+   Error Name: Error
+   Error Message: 
+querySrv ENOTFOUND _m
+ongodb._tcp.cluster0.
+bbd5x.mongodb.net
+
+=========================================
+=== FINAL SUMMARY ===
+=========================================
+Γ¥î CONCLUSION: Both connections failed.
+   1. Check Atlas IP Whitelist (Allow 0.0.0.0/0 for testing).
+   2. Verify username 'prits-website' and password 'GTSoFLocHsVLA2b6' are active.
+   3. Check if your ISP or firewall blocks port 27017.

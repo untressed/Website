@@ -1,0 +1,294 @@
+:root {
+  /* PRITS Final Color Palette */
+  --color-background: #F6F1E9;      /* 50% Warm Ivory - Main page backgrounds & whitespace */
+  --color-text: #20382C;            /* 25% Deep Forest Green - Headings, footer, dark sections, strong text */
+  --color-primary: #315C46;         /* 15% Forest Green - Primary buttons, links, icons, selected elements */
+  --color-secondary: #C0A98F;       /* 7%  Dark Beige / Taupe - Secondary backgrounds, borders, decorative blocks */
+  --color-accent: #D97757;          /* 3%  Terracotta - Small highlights, badges, selective call-to-action accents */
+
+  /* Semantic Aliases */
+  --bg-primary: #F6F1E9;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #FDFCF9;
+  --bg-dark: #20382C;
+  --bg-secondary: #C0A98F;
+  --bg-secondary-light: #F1ECE3;
+  --bg-accent-subtle: #FBECE7;
+
+  --text-main: #20382C;
+  --text-muted: #4F685B;
+  --text-subtle: #7A9084;
+  --text-light: #F6F1E9;
+  --text-primary: #315C46;
+  --text-accent: #D97757;
+
+  --primary-base: #315C46;
+  --primary-hover: #254836;
+  --primary-active: #1D3A2B;
+  --primary-gradient: linear-gradient(135deg, #315C46 0%, #3F7559 100%);
+  --primary-gradient-hover: linear-gradient(135deg, #254836 0%, #315C46 100%);
+
+  --accent-base: #D97757;
+  --accent-hover: #C36344;
+  --accent-gradient: linear-gradient(135deg, #D97757 0%, #E28C6E 100%);
+  --dark-gradient: linear-gradient(135deg, #20382C 0%, #2D4C3C 100%);
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(192, 169, 143, 0.4);
+  --border-medium: rgba(49, 92, 70, 0.2);
+  --border-strong: #C0A98F;
+  --shadow-sm: 0 2px 8px rgba(32, 56, 44, 0.05);
+  --shadow-md: 0 8px 24px rgba(32, 56, 44, 0.08);
+  --shadow-lg: 0 16px 36px rgba(32, 56, 44, 0.12);
+  --shadow-primary: 0 8px 20px rgba(49, 92, 70, 0.28);
+  --shadow-accent: 0 8px 20px rgba(217, 119, 87, 0.28);
+
+  /* Bootstrap Token Overrides */
+  --bs-primary: #315C46;
+  --bs-primary-rgb: 49, 92, 70;
+  --bs-dark: #20382C;
+  --bs-dark-rgb: 32, 56, 44;
+  --bs-body-bg: #F6F1E9;
+  --bs-body-color: #20382C;
+
+  /* Typography System */
+  --font-family-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  font-family: var(--font-family-body);
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--text-main);
+  background-color: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #F6F1E9 !important;
+  color: #20382C !important;
+  font-family: var(--font-family-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  color: #20382C;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+a {
+  font-weight: 500;
+  color: #315C46;
+  text-decoration: inherit;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #D97757;
+}
+
+button, .btn {
+  font-family: var(--font-family-display);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+input, textarea, select {
+  font-family: var(--font-family-body) !important;
+}
+
+.tube-nav-link, .nav-link {
+  font-family: var(--font-family-display);
+}
+
+::selection {
+  background-color: #315C46;
+  color: #F6F1E9;
+}
+
+/* ==========================================================================
+   Bootstrap Global Overrides for PRITS Final Palette
+   ========================================================================== */
+
+/* Primary Button (.btn-primary) */
+.btn-primary {
+  --bs-btn-color: #ffffff !important;
+  --bs-btn-bg: #315C46 !important;
+  --bs-btn-border-color: #315C46 !important;
+  --bs-btn-hover-color: #ffffff !important;
+  --bs-btn-hover-bg: #254836 !important;
+  --bs-btn-hover-border-color: #254836 !important;
+  --bs-btn-focus-shadow-rgb: 49, 92, 70 !important;
+  --bs-btn-active-color: #ffffff !important;
+  --bs-btn-active-bg: #1D3A2B !important;
+  --bs-btn-active-border-color: #1D3A2B !important;
+  --bs-btn-disabled-color: #ffffff !important;
+  --bs-btn-disabled-bg: #7A9084 !important;
+  --bs-btn-disabled-border-color: #7A9084 !important;
+  background-color: #315C46 !important;
+  border-color: #315C46 !important;
+  color: #ffffff !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-primary:hover {
+  background-color: #254836 !important;
+  border-color: #254836 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: #1D3A2B !important;
+  border-color: #1D3A2B !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:focus,
+.btn-primary:focus-visible {
+  box-shadow: 0 0 0 0.25rem rgba(49, 92, 70, 0.3) !important;
+}
+
+/* Outline Primary Button (.btn-outline-primary) */
+.btn-outline-primary {
+  --bs-btn-color: #315C46 !important;
+  --bs-btn-border-color: #315C46 !important;
+  --bs-btn-hover-color: #ffffff !important;
+  --bs-btn-hover-bg: #315C46 !important;
+  --bs-btn-hover-border-color: #315C46 !important;
+  --bs-btn-focus-shadow-rgb: 49, 92, 70 !important;
+  --bs-btn-active-color: #ffffff !important;
+  --bs-btn-active-bg: #315C46 !important;
+  --bs-btn-active-border-color: #315C46 !important;
+  color: #315C46 !important;
+  border-color: #315C46 !important;
+  background-color: transparent !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #315C46 !important;
+  border-color: #315C46 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.btn-check:checked + .btn-outline-primary,
+.show > .btn-outline-primary.dropdown-toggle {
+  background-color: #315C46 !important;
+  border-color: #315C46 !important;
+  color: #ffffff !important;
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary:focus-visible {
+  box-shadow: 0 0 0 0.25rem rgba(49, 92, 70, 0.25) !important;
+}
+
+/* Outline Secondary Button (.btn-outline-secondary) */
+.btn-outline-secondary {
+  --bs-btn-color: #20382C !important;
+  --bs-btn-border-color: #C0A98F !important;
+  --bs-btn-hover-color: #20382C !important;
+  --bs-btn-hover-bg: #F1ECE3 !important;
+  --bs-btn-hover-border-color: #C0A98F !important;
+  color: #20382C !important;
+  border-color: #C0A98F !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #F1ECE3 !important;
+  border-color: #C0A98F !important;
+  color: #20382C !important;
+}
+
+/* Utilities */
+.text-primary {
+  color: #315C46 !important;
+}
+
+.bg-primary {
+  background-color: #315C46 !important;
+}
+
+.border-primary {
+  border-color: #315C46 !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #315C46 !important;
+  box-shadow: 0 0 0 0.25rem rgba(49, 92, 70, 0.2) !important;
+}
+
+/* Custom Quote Section (Taupe 7% & Deep Forest Green 25%) */
+.custom-quote-section {
+  background-color: #F8F4EC !important;
+  border: 1.5px solid #C0A98F !important;
+  border-radius: 20px !important;
+}
+
+.custom-quote-section h3 {
+  color: #20382C !important;
+}
+
+.custom-quote-section .btn-outline-primary {
+  border: 1.5px solid #C0A98F !important;
+  color: #20382C !important;
+  background-color: transparent !important;
+  font-weight: 600 !important;
+}
+
+.custom-quote-section .btn-outline-primary:hover {
+  background-color: #C0A98F !important;
+  border-color: #C0A98F !important;
+  color: #ffffff !important;
+}
+
+/* Checkout Modal Breakdown (Taupe 7%) & Terracotta (3%) CTAs */
+.pricing-modal-content .bg-light {
+  background-color: #F1ECE3 !important;
+  border: 1px solid rgba(192, 169, 143, 0.5) !important;
+  border-radius: 14px !important;
+}
+
+.pricing-modal-content .bg-light span {
+  color: #20382C !important;
+}
+
+.pricing-modal-content .mb-4 .d-flex .btn-primary {
+  background: #D97757 !important;
+  border-color: #D97757 !important;
+  color: #ffffff !important;
+}
+
+.pricing-modal-content .mb-4 .d-flex .btn-primary:hover {
+  background: #C36344 !important;
+  border-color: #C36344 !important;
+}
+
+.pricing-modal-content button.btn-primary.w-100,
+.pricing-modal-content button[type="submit"].btn-primary {
+  background: linear-gradient(135deg, #D97757 0%, #C36344 100%) !important;
+  border-color: #D97757 !important;
+  color: #ffffff !important;
+}
+
+.pricing-modal-content button.btn-primary.w-100:hover,
+.pricing-modal-content button[type="submit"].btn-primary:hover {
+  background: linear-gradient(135deg, #C36344 0%, #D97757 100%) !important;
+  border-color: #C36344 !important;
+}

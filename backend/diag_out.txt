@@ -1,0 +1,20 @@
+﻿=== MongoDB Atlas Production Diagnostic ===
+Current Time: 2026-01-21T12:56:09.433Z
+
+-----------------------------------------
+Testing: Standard URI
+URI: mongodb+srv:****@cluster0.bbd5x.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0
+-----------------------------------------
+
+-----------------------------------------
+Testing: AuthSource=Admin URI
+URI: mongodb+srv:****@cluster0.bbd5x.mongodb.net/test?authSource=admin&retryWrites=true&w=majority&appName=Cluster0
+-----------------------------------------
+
+=========================================
+=== FINAL SUMMARY ===
+=========================================
+Γ¥î CONCLUSION: Both connections failed.
+   1. Check Atlas IP Whitelist (Allow 0.0.0.0/0 for testing).
+   2. Verify username 'prits-website' and password 'GTSoFLocHsVLA2b6' are active.
+   3. Check if your ISP or firewall blocks port 27017.

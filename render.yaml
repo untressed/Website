@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: untressed
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+        # Set this in Render dashboard to your frontend URL
+        # Example: https://untressed.onrender.com
+        # For multiple origins, use comma-separated: https://domain1.com,https://domain2.com
