@@ -33,6 +33,8 @@ const {
     apiLimiter,
     sanitizeData,
     preventXSS
+} = require('./middleware/securityMiddleware');
+
 // Apply response compression (Gzip/Brotli) to speed up mobile transfers
 try {
     const compression = require('compression');
